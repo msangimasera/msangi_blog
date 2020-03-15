@@ -1,0 +1,12 @@
+{% extends 'blogi/base.html' %}
+
+{% block content %}
+
+<h1>Edit Draft</h1>
+<form method="POST" class="post-form-blog">
+    {% csrf_token %}
+    {{ post_draft.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'blogi/base.html' %}
+{% block content %}
+<a href="{% url 'post_draft_edit' pk=post.pk %}"><i class="fa fa-edit fa-3x"></i></a>
+<a href="{% url 'publish_draft' pk=post.pk %}" class="btn btn-primary">Publish</a>
+    <section class="jumbotron">
+        <p>Created: {{ post.created_date }}</p>
+        <h1>{{ post.title }}</h1>
+        {{ post.text|truncatechars:50 }}
+    </section>
+{% endblock %}
