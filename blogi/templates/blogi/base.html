@@ -10,7 +10,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 </head>
 <body>
-<div class="page-header"><h1><a href="{% url "post_list" %}">Msangi Blog</a></h1></div>
+<div class="page-header">
+     {% if user.is_authenticated %}
+          <div class="top-menu"><a href="{% url 'post_new' %}"><i class="fa fa-plus fa-2x"></i></a></div>
+     {% endif %}
+    <h1><a href="{% url "post_list" %}">Msangi Blog</a></h1>
+</div>
 
 <div class="content container">
         <div class="row">
