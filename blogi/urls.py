@@ -17,6 +17,7 @@ urlpatterns = [
     path('drafts/<int:pk>/publish', views.publish_draft, name='publish_draft'),
     path('accounts/login/', auth_views.LoginView.as_view(template_name = 'registration/login.html'),  name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('post/<int:pk>/comment/', views.add_comment_to_post, name='add_comment_to_post'),
 ]
 
 #LoginView.as_view(template_name="regs/login.html")

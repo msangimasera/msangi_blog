@@ -1,5 +1,5 @@
 from .models import Post
-from .forms import DraftForm, PostForm
+from .forms import CommentForm, DraftForm, PostForm
 from django.utils import timezone
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
@@ -93,3 +93,17 @@ def publish_draft(request, pk):
     post_to_publish.published_date = timezone.now()
     post_to_publish.save()
     return redirect('post_detail', pk=pk)
+
+def add_comment_to_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment  = form.save(commit=False)
+            comment.author = request.user
+            comment.post = post
+            comment.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = CommentForm()
+        return render(request, 'blogi/add_comment_to_post.html',{'form': form})
