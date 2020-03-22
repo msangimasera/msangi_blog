@@ -16,6 +16,7 @@ urlpatterns = [
     path('drafts/<int:pk>/edit/', views.post_draft_edit, name='post_draft_edit'),
     path('drafts/<int:pk>/publish', views.publish_draft, name='publish_draft'),
     path('accounts/login/', auth_views.LoginView.as_view(template_name = 'registration/login.html'),  name='login'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
 
 #LoginView.as_view(template_name="regs/login.html")
