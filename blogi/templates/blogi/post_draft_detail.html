@@ -1,4 +1,7 @@
 {% extends 'blogi/base.html' %}
+
+{% block title %} post.title {% endblock %}
+
 {% block content %}
 <a href="{% url 'post_draft_edit' pk=post.pk %}"><i class="fa fa-edit fa-3x"></i></a>
 <a href="{% url 'publish_draft' pk=post.pk %}" class="btn btn-primary">Publish</a>
