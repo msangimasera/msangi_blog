@@ -1,4 +1,4 @@
-from .models import Post
+from .models import Post, Comment
 from .forms import CommentForm, DraftForm, PostForm
 from django.utils import timezone
 from django.shortcuts import get_object_or_404, render, redirect
@@ -107,3 +107,8 @@ def add_comment_to_post(request, pk):
     else:
         form = CommentForm()
         return render(request, 'blogi/add_comment_to_post.html',{'form': form})
+
+def comment_remove(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.delete()
+    return redirect('post_detail', pk=comment.post.pk)
