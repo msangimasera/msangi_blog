@@ -88,6 +88,12 @@ def post_draft_new(request):
         return render(request, 'blogi/post_draft_edit.html', stuff_for_frontend)
 
 @login_required
+def post_delete(request,pk):
+    post_to_delete = get_object_or_404(Post, pk=pk)
+    post_to_delete.delete()
+    return redirect('post_list')
+
+@login_required
 def publish_draft(request, pk):
     post_to_publish = get_object_or_404(Post, pk=pk)
     post_to_publish.published_date = timezone.now()

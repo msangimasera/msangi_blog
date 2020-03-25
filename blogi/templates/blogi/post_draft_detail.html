@@ -5,6 +5,7 @@
 
 {% block content %}
 <a href="{% url 'post_draft_edit' pk=post.pk %}"><i class="fa fa-edit fa-3x"></i></a>
+<a href="{% url 'post_delete' pk=post.pk %}" onclick="return confirm('Are you sure you want to delete this post ?')"><i class="fa fa-trash fa-3x"></i></a>
 <a href="{% url 'publish_draft' pk=post.pk %}" class="btn btn-primary">Publish</a>
     <section class="jumbotron">
         <p>Created: {{ post.created_date }}</p>
