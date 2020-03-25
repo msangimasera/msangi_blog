@@ -1,4 +1,5 @@
 {% extends 'blogi/base.html' %}
+{% load markdownify %}
 
 {% block title %} {{post.title}} {% endblock %}
 
@@ -19,7 +20,7 @@
     {% endif %}
 
     <h1>{{ post.title }}</h1>
-    <p>{{ post.text|linebreaksbr }}</p>
+    <p>{{ post.text|markdown|safe|linebreaksbr }}</p>
 
     <hr>
     <a href="{% url 'add_comment_to_post' pk=post.pk %}" class="btn btn-success">Add Comment</a>
@@ -38,7 +39,7 @@
                  {% endif %}
 
              <strong>{{ comment.author }}</strong>
-             <p>{{ comment.text }}</p>
+             <p>{{ comment.text|markdown|safe }}</p>
         </div>
 
     {% endif %}

@@ -1,4 +1,5 @@
 {% extends 'blogi/base.html' %}
+{% load markdownify %}
 
 {% block title %} post.title {% endblock %}
 
@@ -8,6 +9,6 @@
     <section class="jumbotron">
         <p>Created: {{ post.created_date }}</p>
         <h1>{{ post.title }}</h1>
-        {{ post.text|truncatechars:50 }}
+        {{ post.text|markdown|safe|truncatechars:50 }}
     </section>
 {% endblock %}

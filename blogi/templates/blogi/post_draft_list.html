@@ -1,11 +1,12 @@
 {% extends 'blogi/base.html' %}
+{% load markdownify %}
 {% block title %} Drafts {% endblock %}
 {% block content %}
 
     {% for post in draft_list %}
         <div class="post">
            <h1><a href="{% url 'post_draft_detail' pk=post.pk %}"> {{ post.title }} </a></h1>
-           <p>{{ post.text|linebreaksbr }}</p>
+           <p>{{ post.text|markdown|safe|linebreaksbr }}</p>
        </div>
     {% endfor %}
 
