@@ -20,6 +20,7 @@
           <p class="top-menu">Hello, {{ user.username }} <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt fa-2x"></i></a></p>
      {% else %}
           <div class="top-menu"><a href="{% url 'login' %}"><i class="fas fa-sign-in-alt fa-2x"></i></a></div>
+          <div class="top-menu"><a href="{% url 'signup' %}"><i class="fas fa-user-plus"></i></a></div>
      {% endif %}
     <h1><a href="{% url "post_list" %}">Msangi Blog</a></h1>
 </div>
