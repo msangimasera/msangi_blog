@@ -2,7 +2,7 @@ from .models import Post, Comment
 from .forms import CommentForm, DraftForm, PostForm
 from django.utils import timezone
 from django.shortcuts import get_object_or_404, render, redirect
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
 
@@ -94,6 +94,7 @@ def publish_draft(request, pk):
     post_to_publish.save()
     return redirect('post_detail', pk=pk)
 
+@login_required
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == 'POST':
@@ -108,10 +109,14 @@ def add_comment_to_post(request, pk):
         form = CommentForm()
         return render(request, 'blogi/add_comment_to_post.html',{'form': form})
 
+@login_required
 def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('post_detail', pk=comment.post.pk)
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def comment_approve(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.approve()
